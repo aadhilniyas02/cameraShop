@@ -1,0 +1,91 @@
+@Composable
+fun TopBannerWithSearchBar() {
+    // Use Box for layering
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(300.dp)
+    ) {
+        // Background Top Banner Image
+        Image(
+            painter = painterResource(id = R.drawable.coverimage), //drawable resource
+            contentDescription = "Top Banner",
+            modifier = Modifier
+                .fillMaxSize(), //image fill  box
+            contentScale = ContentScale.Crop
+        )
+
+        // Overlaying Search Bar  top of  Banner
+        SearchBar(
+            modifier = Modifier
+                .align(Alignment.TopCenter) // Align the search bar  the top of  banner
+                .padding(10.dp, 50.dp) // Padding for spacing
+                .fillMaxWidth(0.9f) // width of the search bar
+                .alpha(0.8f) //  opacity for the search bar
+        )
+    }
+}
+
+@Composable
+fun SearchBar(modifier: Modifier = Modifier) {
+    Box(
+        modifier = modifier
+            .background(Color.LightGray.copy(alpha = 0.5f), RoundedCornerShape(16.dp))
+            .padding(8.dp, 5.dp)
+    ) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Icon(imageVector = Icons.Default.Search, contentDescription = "Search Icon")
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(text = "Search Products")
+        }
+    }
+}
+
+@Composable
+fun FeatureCard(description: String, iconRes: Int) {
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
+            .size(120.dp) // Set a fixed size for width and height
+            .padding(8.dp)
+            .border(2.dp, Color.Gray, shape = RoundedCornerShape(12.dp)) // Add rounded border
+            .clip(RoundedCornerShape(12.dp))// Optional: Add border for better visibility
+            .background(Color.Gray) // Optional: Add background color
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier
+                .align(Alignment.Center) // Center Column within the Box
+                .padding(8.dp)
+        ) {
+            Image(
+                painter = painterResource(id = iconRes),
+                contentDescription = null,
+                modifier = Modifier.size(50.dp)
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = description,
+                style = TextStyle(
+                    fontSize = 10.sp, // Adjust the font size here
+                    fontWeight = FontWeight.Normal // Optional: Adjust font weight
+                ),
+                textAlign = TextAlign.Center
+            )
+        }
+    }
+}
+
+@Composable
+fun FeatureCards() {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(15.dp),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        FeatureCard(description = "Capture stunning images anywhere", iconRes = R.drawable.camera)
+        FeatureCard(description = "See the world from new view", iconRes = R.drawable.drone)
+        FeatureCard(description = "High-quality accessories", iconRes = R.drawable.tripad)
+    }
