@@ -79,8 +79,9 @@
                 return;
             }
 
-            if (!productImage.type.startsWith('image/')) {
-                errorMessages.innerHTML = 'Please upload a valid image file';
+             // Validate image type
+            if (productImage && !productImage.type.match('image.*')) {
+                errorMessages.innerHTML = '<p class="text-red-600 font-semibold">Please upload a valid image file</p>';
                 return;
             }
 
@@ -109,7 +110,7 @@
 
                     Object.keys(errors).forEach(field => {
                         // Highlight field error
-                        const inputField = document.querySelector([name="${field}"]);
+                        const inputField = document.querySelector(`[name="${field}"]`);
                         if (inputField) {
                             inputField.classList.add('border-red-600');
                         }

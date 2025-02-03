@@ -18,7 +18,7 @@
 
             <!-- Product Management Section -->
             <div class="space-y-6" id="product-container">
-                <!-- Products will dynamically added here -->
+                <!-- Products dynamically added here -->
             </div>
         </div>
     </div>
