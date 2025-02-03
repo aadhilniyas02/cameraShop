@@ -35,6 +35,12 @@ class AuthController extends Controller
     
             // Redirect to user dashboard
             return redirect()->route('home')->with('success', 'Login Successful');
+
+            // return response()->json([
+            //     'message' => 'Login successful',
+            //     'token' => $token,
+            //     'user' => $user,
+            // ]);
         }
     
         // Return invalid login error

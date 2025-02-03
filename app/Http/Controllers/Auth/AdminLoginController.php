@@ -30,10 +30,16 @@ class AdminLoginController extends Controller
                 return redirect()->route('admin.dashboard'); // return redirect('/admin/dashboard');
             }
             
-            //$token = $user->createToken('auth_token')->plainTextToken;
+            $token = $user->createToken('auth_token')->plainTextToken;
 
-            Auth::logout();
-            return back()->withErrors(['email' => 'You do not have admin access.']);
+            // return response()->json([
+            //     'message' => 'Login successful',
+            //     'token' => $token,
+            //     'user' => $user,
+            // ]);
+
+             Auth::logout();
+             return back()->withErrors(['email' => 'You do not have admin access.']);
         }
 
         // Return invalid login
